@@ -256,10 +256,10 @@ const templates = [
                     path: 'https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white&style=for-the-badge',
                   },
                   devicons: {
-                    path: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg',
+                    path: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg',
                     variants: [
-                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg',
-                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain-wordmark.svg',
+                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg',
+                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original-wordmark.svg',
                     ],
                   },
                 },
@@ -699,7 +699,7 @@ const templates = [
         type: 'image',
         props: {
           content: {
-            url: 'https://camo.githubusercontent.com/62da68eb62b1e5f175f7d1f0191dd89a653d7908feb22d37d4a0ab07365d6791/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f4d3967624264396e6244724f5475314d71782f67697068792e676966',
+            url: 'https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif',
           },
           styles: { align: 'center', height: '150', float: 'none' },
         },
@@ -847,9 +847,9 @@ const templates = [
                     path: 'https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white&style=for-the-badge',
                   },
                   devicons: {
-                    path: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg',
+                    path: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
                     variants: [
-                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg',
+                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
                     ],
                   },
                 },
@@ -991,9 +991,9 @@ const templates = [
                     path: 'https://img.shields.io/badge/Amazon AWS-232F3E?logo=amazonaws&logoColor=white&style=for-the-badge',
                   },
                   devicons: {
-                    path: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+                    path: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
                     variants: [
-                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-line-wordmark.svg',
                       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
                       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
                     ],
