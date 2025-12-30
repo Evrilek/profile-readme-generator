@@ -1,15 +1,14 @@
-import { general as generalConfig } from 'app/config/general';
+import { config } from 'config';
 
-const { badgeBaseUrl, imageBaseUrl } = generalConfig.urls.sections.profileViews;
+const { getloli, laobi } = config.general.urls.sections.profileViews;
 
 const urls = {
-  badge: (username: string) =>
-    `${badgeBaseUrl}?page_id=${username}.${username}&`,
-
-  default: (username: string) => `${imageBaseUrl}/${username}/count.svg?`,
+  laobi: (username: string) => `${laobi}?page_id=${username}.${username}&`,
+  getloli: (username: string) => `${getloli}/@:${username}?`,
 };
 
-const getProfileViewsUrl = (type: keyof typeof urls, username: string) =>
-  urls[type](username);
+function getProfileViewsUrl(type: keyof typeof urls, username: string) {
+  return urls[type](username);
+}
 
 export { getProfileViewsUrl };

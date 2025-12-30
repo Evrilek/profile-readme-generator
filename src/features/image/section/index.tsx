@@ -1,11 +1,10 @@
-import * as S from './styles';
-
 type Content = {
   url: string;
 };
 
 type Styles = {
   align: 'left' | 'center' | 'right';
+  float: 'left' | 'none' | 'right';
   height: number;
 };
 
@@ -14,15 +13,15 @@ type ImageProps = {
   styles: Styles;
 };
 
-const ImageSection = ({ content, styles }: ImageProps) => {
+export function ImageSection(props: ImageProps) {
+  const { content, styles } = props;
+
   const { url } = content;
-  const { height, ...rest } = styles;
+  const { height, align, float } = styles;
 
   return (
-    <S.Container {...rest}>
-      <img height={height} src={url} alt="Image" />
-    </S.Container>
+    <div className="flex" style={{ justifyContent: align, float }}>
+      <img style={{ height: `${height}px` }} src={url} alt="Image" />
+    </div>
   );
-};
-
-export { ImageSection };
+}

@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic';
-import { Github } from '@styled-icons/feather';
 
 import { profileViewsSectionParser } from './parser';
 import { defaultProfileViewsSectionConfig } from './default-config';
 
-import { events } from 'app';
+import { events } from '@events';
 import { PanelsEnum, Sections } from 'types';
 
 const feature = {
@@ -12,7 +11,7 @@ const feature = {
 
   presentation: {
     [PanelsEnum.NEW_SECTION]: {
-      icon: Github,
+      icon: 'telescope',
       onClick: () => events.canvas.add(Sections.PROFILE_VIEWS),
       name: 'Profile views',
     },

@@ -1,30 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import primsjs from 'prismjs';
 
-import { events } from 'app';
+import { Icon } from 'components/ui/primitives/atoms/icon';
+import { Tooltip } from 'components/ui/primitives/atoms/tooltip';
+import { Clickable } from 'components/ui/primitives/atoms/clickable';
+import { CopyCurrentFileContent } from 'components/ui/primitives/compound/copy-current-file-content';
+
+import { events } from '@events';
 import { Events } from 'types';
 
-import { Tooltip } from 'components';
-
-import { actions } from './actions';
-import * as S from './styles';
-
-const ReadmeResult = () => {
+export function ReadmeResult() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [labelVal, setLabelVal] = useState('Copy');
   const [content, setContent] = useState('');
 
-  const handleShowContent = (event: CustomEvent<string>) =>
+  function handleShowContent(event: CustomEvent<string>) {
     setContent(event.detail);
-
-  const handleUpdateLabel = () => {
-    setLabelVal('Copied!');
-
-    setTimeout(() => {
-      setLabelVal('Copy');
-    }, 3000);
-  };
+  }
 
   useEffect(() => {
     primsjs.highlightAllUnder(containerRef.current!);
@@ -39,29 +31,33 @@ const ReadmeResult = () => {
   }, []);
 
   return (
-    <S.Container ref={containerRef}>
-      <S.Actions>
-        {actions.map(({ icon: Icon, action }, i) => (
-          <Tooltip key={i} content={labelVal} position="top">
-            <li>
-              <S.Action
-                onClick={() => {
-                  action(content);
-                  handleUpdateLabel();
-                }}
+    <div ref={containerRef} className="code w-0">
+      <ul className="absolute top-xl right-xl flex bg-background-default">
+        <CopyCurrentFileContent>
+          {({ copy, isCopied }) => {
+            return (
+              <Tooltip
+                key={String(isCopied)}
+                content={isCopied ? 'Copied' : 'Copy File Content'}
+                position="top"
               >
-                <Icon size={16} />
-              </S.Action>
-            </li>
-          </Tooltip>
-        ))}
-      </S.Actions>
+                <Clickable.Button
+                  onClick={copy}
+                  size="icon"
+                  variant="icon"
+                  className="box-border !rounded-full"
+                >
+                  <Icon name={isCopied ? 'check' : 'copy'} />
+                </Clickable.Button>
+              </Tooltip>
+            );
+          }}
+        </CopyCurrentFileContent>
+      </ul>
 
       <pre className={`language-html`}>
         <code className={`language-html`}>{content}</code>
       </pre>
-    </S.Container>
+    </div>
   );
-};
-
-export { ReadmeResult };
+}

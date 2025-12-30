@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { events } from 'app';
-import { Sections, CanvasSection, Events } from 'types';
+import { events } from '@events';
+import { Sections, CanvasSection, Events, PanelsEnum } from 'types';
 
 import { deepChangeObjectProperty } from 'utils';
 import { useExtensions, usePersistedState } from 'hooks';
@@ -81,7 +81,7 @@ const CanvasProvider = ({ children }: CanvasProviderProps) => {
   const handleRemoveSection = (event: CustomEvent<string>) => {
     setSections(state => state.filter(item => item.id !== event.detail));
 
-    if (event.detail === currentSection?.id) events.panel.close('right');
+    if (event.detail === currentSection?.id) events.panel.clear('right');
   };
 
   const handleSetCurrentSection = (event: CustomEvent<string>) => {
@@ -89,7 +89,7 @@ const CanvasProvider = ({ children }: CanvasProviderProps) => {
 
     const result = sections.find(item => item.id === id);
 
-    events.panel.open('right', result!.type);
+    events.panel.show('right', result!.type);
     setCurrentSection(result);
   };
 
@@ -122,18 +122,52 @@ const CanvasProvider = ({ children }: CanvasProviderProps) => {
     setSections(newSections);
   };
 
+  function moveSectionUp(event: CustomEvent<string>) {
+    const index = sections.findIndex(section => section.id === event.detail);
+
+    if (index === 0) return;
+
+    const newSections = [...sections];
+
+    const temp = newSections[index - 1];
+    newSections[index - 1] = newSections[index];
+    newSections[index] = temp;
+
+    setSections(newSections);
+  }
+
+  function moveSectionDown(event: CustomEvent<string>) {
+    const index = sections.findIndex(section => section.id === event.detail);
+
+    if (index + 1 === sections.length) return;
+
+    const newSections = [...sections];
+
+    const temp = newSections[index + 1];
+    newSections[index + 1] = newSections[index];
+    newSections[index] = temp;
+
+    setSections(newSections);
+  }
+
   const handleUseTemplate = () => {
     setSections(previewTemplate);
     setPreviewTemplate([]);
   };
 
   const handlePreviewTemplate = (event: CustomEvent<CanvasSection[]>) => {
-    const template = event.detail.map(section => ({ ...section, id: uuid() }));
+    const template = event.detail.map(section => ({
+      ...section,
+      id: uuid(),
+    }));
 
     setPreviewTemplate(template);
   };
 
-  const handleClearCanvas = () => setSections([]);
+  const handleClearCanvas = () => {
+    setSections([]);
+    events.panel.show('right', PanelsEnum.RECOMMENDED_RESOURCES);
+  };
 
   useEffect(() => {
     // Canvas events
@@ -144,6 +178,8 @@ const CanvasProvider = ({ children }: CanvasProviderProps) => {
     events.on(Events.CANVAS_REORDER_SECTIONS, handleReorderSections);
     events.on(Events.CANVAS_DUPLICATE_SECTION, handleDuplicateSection);
     events.on(Events.CANVAS_CLEAR_SECTIONS, handleClearCanvas);
+    events.on(Events.CANVAS_MOVE_SECTION_UP, moveSectionUp);
+    events.on(Events.CANVAS_MOVE_SECTION_DOWN, moveSectionDown);
 
     return () => {
       events.off(Events.CANVAS_EDIT_SECTION, handleEditSection);
@@ -152,6 +188,8 @@ const CanvasProvider = ({ children }: CanvasProviderProps) => {
       events.off(Events.CANVAS_REORDER_SECTIONS, handleReorderSections);
       events.off(Events.CANVAS_DUPLICATE_SECTION, handleDuplicateSection);
       events.off(Events.CANVAS_CLEAR_SECTIONS, handleClearCanvas);
+      events.off(Events.CANVAS_MOVE_SECTION_UP, moveSectionUp);
+      events.off(Events.CANVAS_MOVE_SECTION_DOWN, moveSectionDown);
     };
   }, [sections, currentSection]);
 

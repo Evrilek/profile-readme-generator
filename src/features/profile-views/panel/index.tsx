@@ -1,16 +1,14 @@
 import { GroupFields } from 'components';
 
 import { groups } from './fields';
-import * as S from './styles';
+import { Panel } from 'components/ui/primitives/atoms/panel';
 
-const ProfileViewsPanel = () => {
+export function ProfileViewsPanel() {
   return (
-    <S.Container>
+    <Panel.Scrollable>
       {groups.map(group => (
         <GroupFields key={group.id} {...group} />
       ))}
-    </S.Container>
+    </Panel.Scrollable>
   );
-};
-
-export { ProfileViewsPanel };
+}

@@ -1,11 +1,9 @@
 import dynamic from 'next/dynamic';
 
-import { Image } from '@styled-icons/feather';
-
 import { imageSectionParser } from './parser';
 import { defaultImageSectionConfig } from './default-config';
 
-import { events } from 'app';
+import { events } from '@events';
 import { PanelsEnum, Sections } from 'types';
 
 const feature = {
@@ -13,7 +11,7 @@ const feature = {
 
   presentation: {
     [PanelsEnum.NEW_SECTION]: {
-      icon: Image,
+      icon: 'image',
       onClick: () => events.canvas.add(Sections.IMAGE),
       name: 'Image',
     },

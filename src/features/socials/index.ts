@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic';
-import { MessageSquare } from '@styled-icons/feather';
 
 import { socialsSectionParser } from './parser';
 import { defaultSocialsSectionConfig } from './default-config';
 
-import { events } from 'app';
+import { events } from '@events';
 import { PanelsEnum, Sections } from 'types';
 
 const feature = {
@@ -12,7 +11,7 @@ const feature = {
 
   presentation: {
     [PanelsEnum.NEW_SECTION]: {
-      icon: MessageSquare,
+      icon: 'message-square',
       onClick: () => events.canvas.add(Sections.SOCIALS),
       name: 'Social Media',
     },

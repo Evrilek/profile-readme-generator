@@ -28,6 +28,27 @@ const panels: Panels = {
       () => () => null
     )
   ),
+
+  [PanelsEnum.RECOMMENDED_RESOURCES]: dynamic(() =>
+    import('./recommended-resources').then(
+      mod => mod.PanelRecommendedResources,
+      () => () => null
+    )
+  ),
+
+  [PanelsEnum.USER_SETTINGS]: dynamic(() =>
+    import('./user-settings').then(
+      mod => mod.PanelUserSettings,
+      () => () => null
+    )
+  ),
+
+  [PanelsEnum.REORDER_SECTIONS]: dynamic(() =>
+    import('./reorder-sections').then(
+      mod => mod.ReorderSections,
+      () => () => null
+    )
+  ),
 };
 
 export { panels };

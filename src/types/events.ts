@@ -6,6 +6,8 @@ export enum Events {
   CANVAS_REORDER_SECTIONS = 'canvas.section.reorder',
   CANVAS_DUPLICATE_SECTION = 'canvas.section.duplicate',
   CANVAS_CLEAR_SECTIONS = 'canvas.clear',
+  CANVAS_MOVE_SECTION_UP = 'canvas.section.move.up',
+  CANVAS_MOVE_SECTION_DOWN = 'canvas.section.move.down',
 
   TEMPLATE_USE = 'template.use',
   TEMPLATE_PREVIEW = 'template.preview',
@@ -18,6 +20,12 @@ export enum Events {
   CONTEXT_MENU_CLOSE = 'contextmenu.close',
 
   // Panels
+
+  PANEL_RIGHT_SHOW = 'panel.right.show',
+  PANEL_LEFT_SHOW = 'panel.left.show',
+
+  PANEL_RIGHT_CLEAR = 'panel.right.clear',
+  PANEL_LEFT_CLEAR = 'panel.left.clear',
 
   PANEL_RIGHT_OPEN = 'panel.right.open',
   PANEL_LEFT_OPEN = 'panel.left.open',
@@ -33,4 +41,9 @@ export enum Events {
   // Extensions
 
   REGISTER_EXTENSION = 'extensions.register',
+
+  // Theme
+
+  USE_THEME = 'theme.use',
+  TOGGLE_THEME = 'theme.toggle',
 }

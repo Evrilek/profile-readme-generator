@@ -1,8 +1,12 @@
+import { IconName } from 'lucide-react/dynamic';
+
+import { Panel } from 'components/ui/primitives/atoms/panel';
+import { DisplayBlock } from 'components/ui/primitives/atoms/display-block';
+
 import { useExtensions } from 'hooks';
 import { PanelsEnum } from 'types';
 
 import { contents } from './contents';
-import * as S from './styles';
 
 const PanelNewSection = () => {
   const { extensions } = useExtensions();
@@ -12,25 +16,28 @@ const PanelNewSection = () => {
   ) as typeof contents;
 
   return (
-    <S.Container>
-      {contents.map(({ icon: Icon, name, ...rest }) => (
-        <S.Wrapper key={name} {...rest}>
-          <S.Block>
-            <Icon size={48} />
-            {name}
-          </S.Block>
-        </S.Wrapper>
-      ))}
+    <Panel.Scrollable>
+      <div className="grid grid-cols-2 gap-md">
+        {[...contents, ...items].map(({ icon, name, ...rest }) => {
+          const El = 'href' in rest ? 'a' : 'button';
 
-      {items.map(({ icon: Icon, name, ...rest }) => (
-        <S.Wrapper key={name} {...rest}>
-          <S.Block>
-            <Icon size={48} />
-            {name}
-          </S.Block>
-        </S.Wrapper>
-      ))}
-    </S.Container>
+          return (
+            <El key={name} {...rest}>
+              <DisplayBlock.Container>
+                <DisplayBlock.Content>
+                  <DisplayBlock.Icon
+                    name={icon as IconName}
+                    size={48}
+                    className="text-inherit group-hover/test:animate-spin"
+                  />
+                  <DisplayBlock.Label>{name}</DisplayBlock.Label>
+                </DisplayBlock.Content>
+              </DisplayBlock.Container>
+            </El>
+          );
+        })}
+      </div>
+    </Panel.Scrollable>
   );
 };
 

@@ -22,6 +22,17 @@ const social_icons = [
     },
   },
   {
+    name: 'bluesky',
+    icons: ['default'],
+    badge: {
+      message: 'Bluesky',
+      color: '0285FF',
+      label: '',
+      logo: 'bluesky',
+      logoColor: 'white',
+    },
+  },
+  {
     name: 'codesandbox',
     icons: ['default'],
     badge: {
@@ -88,6 +99,17 @@ const social_icons = [
     },
   },
   {
+    name: 'gitlab',
+    icons: ['default'],
+    badge: {
+      message: 'GitLab',
+      color: 'FC6D26',
+      label: '',
+      logo: 'gitlab',
+      logoColor: 'white',
+    },
+  },
+  {
     name: 'gmail',
     icons: ['default'],
     badge: {
@@ -117,6 +139,17 @@ const social_icons = [
       color: 'E4405F',
       label: '',
       logo: 'instagram',
+      logoColor: 'white',
+    },
+  },
+  {
+    name: 'itch',
+    icons: ['default'],
+    badge: {
+      message: 'itch.io',
+      color: '000000',
+      label: '',
+      logo: 'itch',
       logoColor: 'white',
     },
   },
@@ -250,6 +283,17 @@ const social_icons = [
       color: 'e2165e',
       label: '',
       logo: 'visualstudio',
+      logoColor: 'white',
+    },
+  },
+  {
+    name: 'wechat',
+    icons: ['default'],
+    badge: {
+      message: 'WeChat',
+      color: '7BB32A',
+      label: '',
+      logo: 'wechat',
       logoColor: 'white',
     },
   },

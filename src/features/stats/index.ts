@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic';
-import { PieChart } from '@styled-icons/feather';
 
 import { statsSectionParser } from './parser';
 import { defaultStatsSectionConfig } from './default-config';
 
-import { events } from 'app';
+import { events } from '@events';
 import { PanelsEnum, Sections } from 'types';
 
 const feature = {
@@ -12,7 +11,7 @@ const feature = {
 
   presentation: {
     [PanelsEnum.NEW_SECTION]: {
-      icon: PieChart,
+      icon: 'pie-chart',
       onClick: () => events.canvas.add(Sections.STATS),
       name: 'Stats',
     },

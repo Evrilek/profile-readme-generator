@@ -1,6 +1,6 @@
 import { getActivitiesUrl } from 'utils';
-
-import * as S from './styles';
+import { activitiesSectionParser } from 'features/activities//parser';
+import parse from 'html-react-parser';
 
 type Content = {
   type: Parameters<typeof getActivitiesUrl>[0];
@@ -17,15 +17,14 @@ type ActivitiesSectionProps = {
   styles: Styles;
 };
 
-const ActivitiesSection = ({ content, styles }: ActivitiesSectionProps) => {
-  const { type, ...rest } = content;
-  const url = getActivitiesUrl(type, rest);
+export function ActivitiesSection(props: ActivitiesSectionProps) {
+  const { content, styles } = props;
+
+  const mainContent = activitiesSectionParser({ content, styles });
 
   return (
-    <S.Container {...styles}>
-      <img src={url} alt={`Layout with last ${type} posts`} />
-    </S.Container>
+    <div className="flex gap-sm" style={{ justifyContent: styles.align }}>
+      {parse(mainContent)}
+    </div>
   );
-};
-
-export { ActivitiesSection };
+}
